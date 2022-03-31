@@ -30,7 +30,7 @@ body {
     border: 2px solid black;
   }
   
-  .viewfinder-content {
+  #viewfinder-content {
     position: absolute;
     bottom: 0;
     right: 0;
