@@ -1,15 +1,15 @@
-let firstOperand = '';
-let secondOperand = '';
+let activeOperand = '';
+let storedOperand = '';
 let operator = '';
 let selected = false;
 
-let viewfinderContent = document.getElementById('viewfinder-content');
+let displayContent = document.getElementById('display-content');
 let clearButton = document.getElementById('clear');
 
 clearButton.addEventListener('click', function() {
-    viewfinderContent.innerText = '';
-    firstOperand = 0;
-    secondOperand = 0;
+    displayContent.innerText = '';
+    activeOperand = '';
+    storedOperand = '';
     operator = '';
     selected = false;
 });
@@ -17,48 +17,52 @@ clearButton.addEventListener('click', function() {
 let deleteButton = document.getElementById('delete');
 
 deleteButton.addEventListener('click', function() {
-    let str = viewfinderContent.innerText;
+    let str = displayContent.innerText;
     let newStr = str.slice(0, -1);
-    viewfinderContent.innerText = newStr;
-    firstOperand = Number(viewfinderContent.innerText);
+    displayContent.innerText = newStr;
+    activeOperand = Number(displayContent.innerText);
 });
 
-let buttons = document.querySelectorAll('.button');
+let numbers = document.querySelectorAll('.number');
 
-for(let i = 0; i < buttons.length; i++) {
-    buttons[i].addEventListener('click', function() {
+for(let i = 0; i < numbers.length; i++) {
+    numbers[i].addEventListener('click', function() {
         if(selected) {
-            if(viewfinderContent.innerText === '') {
-                viewfinderContent.innerText += buttons[i].innerText;
+            if(displayContent.innerText === '') {
+                displayContent.innerText += numbers[i].innerText;
             }
             else {
-                viewfinderContent.innerText = '';
-                viewfinderContent.innerText += buttons[i].innerText;
+                displayContent.innerText = '';
+                displayContent.innerText += numbers[i].innerText;
             }
-            firstOperand = Number(viewfinderContent.innerText);
-            operate(firstOperand, secondOperand);
-            selected = false;
-            operator = '';
+            selected = false;            
+            activeOperand = Number(displayContent.innerText);
         }
         else {
-            viewfinderContent.innerText += buttons[i].innerText;
-            firstOperand = Number(viewfinderContent.innerText);
+            displayContent.innerText += numbers[i].innerText;
+            activeOperand = Number(displayContent.innerText);
         }
     });
 }
 
 function operate(first, second) {
    if(operator === '+') {
-       viewfinderContent.innerText = second + first;
+       displayContent.innerText = second + first;
    }
    else if(operator === '-') {
-       viewfinderContent.innerText = second - first;
+       displayContent.innerText = second - first;
    }
    else if(operator === '÷') {
-       viewfinderContent.innerText = second / first;
-   }
+       if(activeOperand === '0') {
+           displayContent.innerText = 'You can\'t divide by zero!';
+           clearButton.click();
+       }
+       else {
+           displayContent.innerText = second / first;
+       }
+    }
    else if(operator === '*') {
-       viewfinderContent.innerText = second * first;
+       displayContent.innerText = second * first;
    }
 }
 
@@ -67,13 +71,14 @@ let operators = document.querySelectorAll('.operator');
 for(let i = 0; i < operators.length; i++) {
     operators[i].addEventListener('click', function() {
         if(selected) {
-            secondOperand = firstOperand;
-            firstOperand = '';
+            storedOperand = activeOperand;
+            activeOperand = '';
         }
         else {
+            operate(activeOperand, storedOperand);
             selected = true;
             operator = operators[i].innerText;
-            secondOperand = firstOperand;
+            storedOperand = activeOperand; // storing last number on display
         }
     });
 }
@@ -81,5 +86,9 @@ for(let i = 0; i < operators.length; i++) {
 let equals = document.querySelector('#equals');
 
 equals.addEventListener('click', function() {
-    operate(firstOperand, secondOperand);
+    operate(activeOperand, storedOperand);
+    operator = '';
+    selected = false;
+    activeOperand = Number(displayContent.innerText);
+    storedOperand = '';
 });

@@ -20,7 +20,7 @@ body {
     gap: 12px;
 }
   
-.viewfinder {
+.display {
     overflow: hidden;
     position: relative;
     margin-top: 20px;
@@ -31,7 +31,7 @@ body {
     border: 2px solid black;
 }
   
-#viewfinder-content {
+#display-content {
     overflow: hidden;
     position: absolute;
     bottom: 0;
@@ -77,7 +77,7 @@ body {
     background-color: maroon;
 }
 
-.button, .operator, #decimal, #equals {
+.number, .operator, #decimal, #equals {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -90,7 +90,7 @@ body {
     border: 2px solid black;
 }
   
-.button:hover, .operator:hover, #decimal:hover {
+.number:hover, .operator:hover, #decimal:hover {
     background-color: thistle;
 }
   
