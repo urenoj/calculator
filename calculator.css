@@ -1,13 +1,13 @@
 body {
     background-color: bisque;
-  }
+}
   
-  .container {
+.container {
     display: flex;
     justify-content: center;
-  }
+}
   
-  .calculator {
+.calculator {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -18,9 +18,10 @@ body {
     border-radius: 24px;
     box-shadow: 5px 5px #101010;
     gap: 12px;
-  }
+}
   
-  .viewfinder {
+.viewfinder {
+    overflow: hidden;
     position: relative;
     margin-top: 20px;
     width: 270px;
@@ -28,38 +29,55 @@ body {
     background-color: palegreen;
     border-radius: 24px;
     border: 2px solid black;
-  }
+}
   
-  #viewfinder-content {
+#viewfinder-content {
+    overflow: hidden;
     position: absolute;
     bottom: 0;
     right: 0;
     padding: 8px 12px;
     font-size: 48px;
     font-family: fantasy;
-  }
+}
   
-  .buttons {
+.buttons {
     margin-top: 10px;
     margin-left: 15px;
     display: flex;
     flex-wrap: wrap;
     gap: 16px 16px;
-  }
+}
 
-  .erase {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-weight: bold;
-      font-size: 20px;
-      width: 120px;
-      height: 50px;
-      border: 2px solid black;
-      border-radius: 12px;
-  }
+#clear, #delete {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 20px;
+    width: 120px;
+    height: 50px;
+    border: 2px solid black;
+    border-radius: 12px;
+}  
+  
+#clear {
+    background-color: lightblue;
+}
+  
+#clear:hover {
+    background-color: steelblue;
+}
+  
+#delete {
+    background-color: firebrick;
+}
+  
+#delete:hover {
+    background-color: maroon;
+}
 
-  .button {
+.button, .operator, #decimal, #equals {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -70,32 +88,17 @@ body {
     border-radius: 50%;
     background-color: white;
     border: 2px solid black;
-  }
+}
   
-  .button:hover {
+.button:hover, .operator:hover, #decimal:hover {
     background-color: thistle;
-  }
+}
   
-  #equals {
+#equals {
     background-color: orange;
-  }
+}
   
-  #equals:hover {
+#equals:hover {
     background-color: chocolate;
-  }
+}
   
-  #clear {
-    background-color: lightblue;
-  }
-  
-  #clear:hover {
-    background-color: steelblue;
-  }
-  
-  #delete {
-    background-color: firebrick;
-  }
-  
-  #delete:hover {
-    background-color: maroon;
-  }
