@@ -39,30 +39,42 @@ for(let i = 0; i < numbers.length; i++) {
             activeOperand = Number(displayContent.innerText);
         }
         else {
-            displayContent.innerText += numbers[i].innerText;
-            activeOperand = Number(displayContent.innerText);
+            if(displayContent.innerText === '0') {
+                displayContent.innerText = '';
+                displayContent.innerText += numbers[i].innerText;
+                activeOperand = Number(displayContent.innerText);
+            }
+            else {
+                displayContent.innerText += numbers[i].innerText;
+                activeOperand = Number(displayContent.innerText);
+            }
         }
     });
 }
 
+function round(num) {
+    return Math.round(num * 100)/ 100;
+}
+
 function operate(first, second) {
    if(operator === '+') {
-       displayContent.innerText = second + first;
+       displayContent.innerText = round(second + first);
    }
    else if(operator === '-') {
-       displayContent.innerText = second - first;
+       displayContent.innerText = round(second - first);
    }
    else if(operator === '÷') {
-       if(activeOperand === '0') {
-           displayContent.innerText = 'You can\'t divide by zero!';
+       if(activeOperand === 0) {
+           console.log('test');
+           alert('You can\'t divide by 0!');
            clearButton.click();
        }
        else {
-           displayContent.innerText = second / first;
+           displayContent.innerText = round(second / first);
        }
     }
    else if(operator === '*') {
-       displayContent.innerText = second * first;
+       displayContent.innerText = round(second * first);
    }
 }
 
