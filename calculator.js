@@ -105,3 +105,15 @@ equals.addEventListener('click', function() {
     activeOperand = Number(displayContent.innerText);
     storedOperand = '';
 });
+
+let decimal = document.querySelector('#decimal');
+
+decimal.addEventListener('click', function() {
+    if(displayContent.innerText === '') {
+        displayContent.innerText = '0';
+    }
+    if(displayContent.innerText.includes('.')) {
+        return;
+    }
+    displayContent.innerText += '.';
+});
