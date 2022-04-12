@@ -90,6 +90,7 @@ for(let i = 0; i < operators.length; i++) {
             operate(activeOperand, storedOperand);
             selected = true;
             operator = operators[i].innerText;
+            activeOperand = Number(displayContent.innerText);
             storedOperand = activeOperand; // storing last number on display
         }
     });
